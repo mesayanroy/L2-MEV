@@ -109,7 +109,22 @@ jobs:
     needs: push-docker-images
     environment: production
     steps:
+      - name: Check deployment credentials
+        id: creds
+        run: |
+          if [ -n "$DEPLOY_HOST" ] && [ -n "$DEPLOY_USER" ] && [ -n "$DEPLOY_SSH_KEY" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::DEPLOY_HOST, DEPLOY_USER, or DEPLOY_SSH_KEY secret is not set — skipping SSH deploy."
+          fi
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+
       - name: SSH deploy
+        if: steps.creds.outputs.available == 'true'
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.DEPLOY_HOST }}
