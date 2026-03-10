@@ -71,7 +71,7 @@ export default function DocsPage() {
             public mempool. Only the winning validator sees it.
           </li>
           <li>
-            <strong>On-chain slippage guard</strong> — even if a bot frontrans, the on-chain program
+            <strong>On-chain slippage guard</strong> — even if a bot frontruns, the on-chain program
             reverts your transaction if the actual execution price deviates beyond your tolerance.
           </li>
           <li>

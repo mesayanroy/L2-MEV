@@ -144,6 +144,12 @@ pub struct PriceCommitment {
 }
 
 impl PriceCommitment {
+    // 8  = Anchor discriminator
+    // 32 = owner Pubkey
+    // 8  = expected_out (u64)
+    // 8  = slippage_bps (u64)
+    // 8  = committed_at (u64, slot)
+    // 1  = bump (u8)
     pub const LEN: usize = 8 + 32 + 8 + 8 + 8 + 1;
 }
 

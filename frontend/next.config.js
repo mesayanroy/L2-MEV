@@ -2,9 +2,7 @@
 const nextConfig = {
   output: "standalone",
   reactStrictMode: true,
-  experimental: {
-    typedRoutes: true,
-  },
+  experimental: {},
   async headers() {
     return [
       {

@@ -94,6 +94,16 @@ function formatAlert(
   alert: { type: string; severity: string; dex: string; pool: string; details: string; timestamp: number; estimatedLossUsd?: number },
   threshold: number,
 ): string | null {
+  // Filter out low-severity alerts below the threshold
+  const severityToImpact: Record<string, number> = {
+    critical: 10,
+    high:     5,
+    medium:   2,
+    low:      0.5,
+    suspicious: 1,
+  };
+  const impact = severityToImpact[alert.severity] ?? 0;
+  if (impact < threshold) return null;
   const severityColor: Record<string, (s: string) => string> = {
     critical: chalk.red.bold,
     high:     chalk.red,
@@ -111,6 +121,4 @@ function formatAlert(
     `${chalk.bold(alert.type)}${loss}\n` +
     `  ${chalk.dim(alert.details)}`
   );
-
-  void threshold; // threshold filtering could be added here
 }

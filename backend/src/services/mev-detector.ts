@@ -123,7 +123,6 @@ export class MevDetector extends EventEmitter {
       }
 
       // Look for the sandwich pattern in the transaction's slot neighbourhood
-      const slot = tx.slot;
       const sandwichCandidate = this.alerts.find(
         (a) =>
           a.type === "sandwich" &&
@@ -144,13 +143,11 @@ export class MevDetector extends EventEmitter {
       }
 
       // Heuristic: check balance changes for unusual price impact
-      const preBalances = tx.meta?.preTokenBalances ?? [];
+      const preBalances  = tx.meta?.preTokenBalances  ?? [];
       const postBalances = tx.meta?.postTokenBalances ?? [];
 
       const slippageActual = this.estimateSlippage(preBalances, postBalances);
       const wasAttacked = slippageActual > 2; // >2% unexpected slippage is suspicious
-
-      void slot; // slot available for future block-range search
 
       return {
         txSignature: signature,

@@ -1,6 +1,8 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import ora from "ora";
+import { readFileSync, existsSync, writeFileSync } from "fs";
+import { Keypair } from "@solana/web3.js";
 import { createApiClient } from "../lib/api";
 import { getConfig } from "../lib/config";
 
@@ -47,13 +49,32 @@ export function registerShield(program: Command): void {
       try {
         const api = createApiClient();
 
+        // Resolve wallet public key from the configured keypair file
+        let walletPublicKey = "11111111111111111111111111111111"; // System Program (safe fallback)
+        const keypairPath = cfg.keypairPath.replace(/^~/, process.env.HOME ?? "~");
+        if (existsSync(keypairPath)) {
+          try {
+            const raw = JSON.parse(readFileSync(keypairPath, "utf-8")) as number[];
+            const kp = Keypair.fromSecretKey(Uint8Array.from(raw));
+            walletPublicKey = kp.publicKey.toBase58();
+          } catch {
+            console.log(chalk.yellow(`⚠  Could not read keypair from ${keypairPath} — using placeholder.\n`));
+          }
+        } else {
+          console.log(
+            chalk.yellow(
+              `⚠  Keypair file not found at ${keypairPath}. Run \`l2mev init\` or set \`keypairPath\`.\n`,
+            ),
+          );
+        }
+
         const body = {
           dex,
           pair,
-          amountIn:        amount,
-          slippageBps:     slippage,
-          walletPublicKey: "11111111111111111111111111111111", // placeholder — replaced by wallet adapter
-          privateRoute:    forcePrivate,
+          amountIn:     amount,
+          slippageBps:  slippage,
+          walletPublicKey,
+          privateRoute: forcePrivate,
           dryRun,
         };
 
@@ -87,8 +108,7 @@ export function registerShield(program: Command): void {
             ),
           );
 
-          const fs = await import("fs");
-          fs.writeFileSync("./shielded-tx.txt", data.serializedTransaction);
+          writeFileSync("./shielded-tx.txt", data.serializedTransaction);
         } else {
           console.log(chalk.gray("\n  (dry-run — no transaction broadcast)\n"));
         }
