@@ -1,10 +1,12 @@
 # ── Build stage ──────────────────────────────────────────────
-FROM node:20-alpine AS builder
+# Use full Debian-based image in builder so native modules (e.g. usb via
+# @solana/wallet-adapter-wallets) can compile without extra toolchain installs.
+FROM node:20 AS builder
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json package-lock.json ./
 COPY frontend/package.json ./frontend/
-RUN npm install --workspace=frontend
+RUN npm ci --workspace=frontend
 
 COPY frontend ./frontend
 RUN npm -w frontend run build

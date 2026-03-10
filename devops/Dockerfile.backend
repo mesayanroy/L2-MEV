@@ -1,11 +1,13 @@
 # ── Build stage ──────────────────────────────────────────────
-FROM node:20-alpine AS builder
+# Use full Debian-based image in builder so native modules (e.g. from
+# @solana packages) can compile without extra toolchain installs.
+FROM node:20 AS builder
 WORKDIR /app
 
 # Copy workspace manifests first for layer caching
-COPY package.json ./
+COPY package.json package-lock.json ./
 COPY backend/package.json ./backend/
-RUN npm install --workspace=backend
+RUN npm ci --workspace=backend
 
 COPY backend ./backend
 RUN npm -w backend run build
