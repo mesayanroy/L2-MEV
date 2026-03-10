@@ -1,0 +1,24 @@
+{
+  "name": "l2-mev",
+  "version": "1.0.0",
+  "private": true,
+  "description": "L2-MEV Shield – Solana MEV protection platform",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "cli"
+  ],
+  "scripts": {
+    "dev:frontend": "npm -w frontend run dev",
+    "dev:backend": "npm -w backend run dev",
+    "build": "npm -w frontend run build && npm -w backend run build && npm -w cli run build",
+    "test": "npm -w backend run test && npm -w cli run test",
+    "lint": "npm -w frontend run lint && npm -w backend run lint && npm -w cli run lint",
+    "docker:up": "docker-compose up --build -d",
+    "docker:down": "docker-compose down"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

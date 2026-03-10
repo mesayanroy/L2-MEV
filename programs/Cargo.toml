@@ -1,0 +1,3 @@
+[workspace]
+members = ["mev-shield"]
+resolver = "2"
