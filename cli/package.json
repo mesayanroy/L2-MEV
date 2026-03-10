@@ -1,0 +1,57 @@
+{
+  "name": "l2mev",
+  "version": "1.0.0",
+  "description": "L2-MEV Shield CLI — Protect your Solana trades from MEV attacks",
+  "main": "dist/index.js",
+  "bin": {
+    "l2mev": "dist/index.js"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "lint": "eslint 'src/**/*.ts' 'tests/**/*.ts'",
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
+  },
+  "keywords": [
+    "solana", "mev", "sandwich-attack-protection", "defi", "security",
+    "jupiter", "raydium", "orca", "cli"
+  ],
+  "author": "L2-MEV Shield Contributors",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.91.8",
+    "@solana/spl-token": "^0.4.6",
+    "axios": "^1.6.8",
+    "chalk": "^4.1.2",
+    "commander": "^12.0.0",
+    "conf": "^10.2.0",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1",
+    "table": "^6.8.1",
+    "ws": "^8.16.0",
+    "dotenv": "^16.4.5",
+    "bs58": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.12.2",
+    "@types/ws": "^8.5.10",
+    "@types/bs58": "^4.0.4",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": ["<rootDir>/tests"]
+  }
+}

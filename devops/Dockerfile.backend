@@ -1,0 +1,27 @@
+# ── Build stage ──────────────────────────────────────────────
+FROM node:20-alpine AS builder
+WORKDIR /app
+
+# Copy workspace manifests first for layer caching
+COPY package.json ./
+COPY backend/package.json ./backend/
+RUN npm install --workspace=backend
+
+COPY backend ./backend
+RUN npm -w backend run build
+
+# ── Production stage ─────────────────────────────────────────
+FROM node:20-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=builder /app/backend/dist ./dist
+COPY --from=builder /app/backend/package.json ./package.json
+RUN npm install --omit=dev
+
+EXPOSE 4000
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD wget -qO- http://localhost:4000/health || exit 1
+
+CMD ["node", "dist/index.js"]
