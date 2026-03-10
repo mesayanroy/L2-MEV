@@ -37,7 +37,7 @@ jobs:
   push-docker-images:
     name: Push Docker images to registry
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
+    if: (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') && secrets.DOCKER_USERNAME != ''
     steps:
       - uses: actions/checkout@v4
 

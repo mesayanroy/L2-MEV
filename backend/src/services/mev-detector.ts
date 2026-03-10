@@ -14,14 +14,14 @@
  *     pool size, recent alert rate, and token volatility.
  */
 
-import { Connection, PublicKey } from "@solana/web3.js";
+import { Connection } from "@solana/web3.js";
 import { EventEmitter } from "events";
 import { v4 as uuidv4 } from "uuid";
 import { MevAlert, AnalysisResult, DexName } from "../types";
 import { logger } from "../lib/logger";
 
-// Known program IDs for popular Solana DEXes
-const DEX_PROGRAMS: Record<DexName, string> = {
+// Known program IDs for popular Solana DEXes (used for on-chain subscription filtering)
+export const DEX_PROGRAMS: Record<DexName, string> = {
   jupiter:  "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
   raydium:  "675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8",
   orca:     "9W959DqEETiGZocYWCQPaJ6sBmUzgfxXfqGeTEdp3aQP",
