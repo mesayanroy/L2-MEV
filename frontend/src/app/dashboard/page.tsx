@@ -89,7 +89,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {/* Pools */}
+      {/* Pools - */}
       {pools.length > 0 && (
         <section className="mt-10">
           <h2 className="mb-4 text-xl font-bold text-white">Watched Pools</h2>
