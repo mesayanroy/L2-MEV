@@ -2,7 +2,7 @@ const DEXES = [
   { name: "Jupiter",  abbr: "JUP", desc: "Route aggregator — best price across all Solana DEXes", color: "indigo" },
   { name: "Raydium",  abbr: "RAY", desc: "AMM + order-book hybrid with deep SOL/USDC liquidity", color: "cyan" },
   { name: "Orca",     abbr: "ORC", desc: "Concentrated liquidity (Whirlpools) with low slippage", color: "violet" },
-  { name: "Binance",  abbr: "BNB", desc: "CEX price-feed integration for cross-venue arbitrage detection", color: "amber" },
+  { name: "Binance",  abbr: "BIN", desc: "CEX price-feed integration for cross-venue arbitrage detection", color: "amber" },
 ];
 
 const DEX_COLORS: Record<string, string> = {
