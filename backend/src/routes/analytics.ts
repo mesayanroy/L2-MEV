@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import { PoolMonitor } from "../services/pool-monitor";
 import { MevDetector } from "../services/mev-detector";
 
-export const analyticsRouter = Router();
+export const analyticsRouter: Router = Router();
 
 /**
  * GET /api/analytics/summary
