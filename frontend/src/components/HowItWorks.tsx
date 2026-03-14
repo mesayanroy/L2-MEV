@@ -30,33 +30,34 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="page-wrap px-0 py-12 sm:py-16">
-      <div className="section-shell rounded px-6 py-10 sm:px-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">Workflow</p>
-          <h2 className="section-title mt-4">From zero setup to protected execution.</h2>
-          <p className="mx-auto mt-5 max-w-xl text-center text-gray-600">
-          From install to protected trade in under two minutes.
+    <section id="how-it-works" className="py-24">
+      <div className="page-wrap">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="badge mb-4 text-xs">Workflow</p>
+          <h2 className="section-title">From zero to protected in minutes</h2>
+          <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-slate-400">
+            From install to protected trade in under two minutes.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mt-16 grid gap-6 lg:grid-cols-2">
           {STEPS.map((s, idx) => (
             <div
               key={s.step}
-              className="glass-panel flex flex-col gap-4 rounded p-6 sm:flex-row sm:items-start"
+              className="glass-panel flex flex-col gap-5 rounded-xl p-6 sm:flex-row sm:items-start"
             >
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded border border-blue-300 bg-blue-100 text-sm font-bold text-blue-700">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-indigo-500/30 bg-indigo-500/10 text-xs font-bold text-indigo-400">
                 {s.step}
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-base font-semibold text-slate-100">
                   {idx + 1}. {s.title}
                 </h3>
-                <p className="mt-2 text-sm leading-7 text-gray-700">{s.desc}</p>
-                <pre className="mt-4 overflow-x-auto rounded border border-gray-300 bg-gray-100 px-4 py-4 text-sm text-blue-700">
-                  <code>$ {s.code}</code>
-                </pre>
+                <p className="mt-2 text-sm leading-7 text-slate-400">{s.desc}</p>
+                <div className="code-block mt-4 overflow-x-auto text-xs">
+                  <span className="text-indigo-400">$ </span>
+                  <span className="text-cyan-300">{s.code}</span>
+                </div>
               </div>
             </div>
           ))}

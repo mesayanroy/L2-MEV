@@ -1,27 +1,89 @@
+import Link from "next/link";
+
+const FOOTER_LINKS = [
+  {
+    heading: "Product",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Dashboard", href: "/dashboard" },
+    ],
+  },
+  {
+    heading: "Developers",
+    links: [
+      { label: "Documentation", href: "/docs" },
+      { label: "CLI Reference", href: "/docs/cli" },
+      { label: "API Reference", href: "/docs/api" },
+    ],
+  },
+  {
+    heading: "Community",
+    links: [
+      { label: "GitHub", href: "https://github.com/mesayanroy/L2-MEV", external: true },
+    ],
+  },
+];
+
 export function Footer() {
   return (
-    <footer className="px-4 pb-10 pt-16">
-      <div className="page-wrap border-t border-gray-300 pt-6">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+    <footer className="border-t border-[rgba(99,102,241,0.12)] bg-[rgba(10,15,30,0.8)] pb-10 pt-16">
+      <div className="page-wrap">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
           <div>
-            <p className="text-lg font-semibold text-gray-900">L2-MEV Shield</p>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-gray-600">
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-sm font-bold text-white">
+                L2
+              </span>
+              <span className="text-sm font-semibold text-slate-200">MEV Shield</span>
+            </div>
+            <p className="mt-4 max-w-xs text-sm leading-6 text-slate-500">
               Open infrastructure for safer Solana execution. Detect threats, route privately,
-              and protect every swap against toxic order flow.
+              and protect every swap.
             </p>
           </div>
 
-          <div className="text-sm text-gray-500">
-            <p>© {new Date().getFullYear()} L2-MEV Shield</p>
-            <a
-              href="https://github.com/mesayanroy/L2-MEV"
-              className="mt-2 inline-block text-gray-700 transition hover:text-gray-900"
-              target="_blank"
-              rel="noreferrer"
-            >
-              View project on GitHub ↗
-            </a>
-          </div>
+          {/* Link groups */}
+          {FOOTER_LINKS.map((group) => (
+            <div key={group.heading}>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                {group.heading}
+              </p>
+              <ul className="space-y-3">
+                {group.links.map((link) => (
+                  <li key={link.label}>
+                    {"external" in link && link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm text-slate-400 transition-colors hover:text-slate-200"
+                      >
+                        {link.label} ↗
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-slate-400 transition-colors hover:text-slate-200"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[rgba(99,102,241,0.1)] pt-8 sm:flex-row">
+          <p className="text-sm text-slate-600">
+            © {new Date().getFullYear()} L2-MEV Shield. All rights reserved.
+          </p>
+          <p className="text-sm text-slate-600">
+            Built on Solana · Powered by Jito
+          </p>
         </div>
       </div>
     </footer>
