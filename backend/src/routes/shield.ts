@@ -4,7 +4,7 @@ import { requireAuth } from "../middleware/auth";
 import { TransactionShield } from "../services/transaction-shield";
 import { MevDetector } from "../services/mev-detector";
 
-export const shieldRouter = Router();
+export const shieldRouter: Router = Router();
 
 const ShieldBodySchema = z.object({
   dex: z.enum(["jupiter", "raydium", "orca", "binance"]),

@@ -37,6 +37,7 @@
     "bs58": "^5.0.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "@types/inquirer": "^9.0.7",
     "@types/node": "^20.12.2",
     "@types/ws": "^8.5.10",
@@ -52,6 +53,11 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "roots": ["<rootDir>/tests"]
+    "roots": ["<rootDir>/tests"],
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.test.json"
+      }
+    }
   }
 }

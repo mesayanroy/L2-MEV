@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
 import { PoolMonitor } from "../services/pool-monitor";
 
-export const monitorRouter = Router();
+export const monitorRouter: Router = Router();
 
 /**
  * GET /api/monitor/pools

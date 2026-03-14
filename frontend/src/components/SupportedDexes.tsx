@@ -1,33 +1,42 @@
 const DEXES = [
-  { name: "Jupiter",  logo: "🪐", desc: "Route aggregator — best price across all Solana DEXes" },
-  { name: "Raydium",  logo: "⚡", desc: "AMM + order-book hybrid with deep SOL/USDC liquidity" },
-  { name: "Orca",     logo: "🐳", desc: "Concentrated liquidity (Whirlpools) with low slippage" },
-  { name: "Binance",  logo: "🔶", desc: "CEX price-feed integration for cross-venue arbitrage detection" },
+  { name: "Jupiter",  abbr: "JUP", desc: "Route aggregator — best price across all Solana DEXes", color: "indigo" },
+  { name: "Raydium",  abbr: "RAY", desc: "AMM + order-book hybrid with deep SOL/USDC liquidity", color: "cyan" },
+  { name: "Orca",     abbr: "ORC", desc: "Concentrated liquidity (Whirlpools) with low slippage", color: "violet" },
+  { name: "Binance",  abbr: "BIN", desc: "CEX price-feed integration for cross-venue arbitrage detection", color: "amber" },
 ];
+
+const DEX_COLORS: Record<string, string> = {
+  indigo: "border-indigo-500/20 bg-indigo-500/10 text-indigo-400",
+  cyan:   "border-cyan-500/20 bg-cyan-500/10 text-cyan-400",
+  violet: "border-violet-500/20 bg-violet-500/10 text-violet-400",
+  amber:  "border-amber-500/20 bg-amber-500/10 text-amber-400",
+};
 
 export function SupportedDexes() {
   return (
-    <section id="dexes" className="page-wrap px-0 py-12 sm:py-16">
-      <div className="section-shell rounded px-6 py-10 sm:px-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">Coverage</p>
-          <h2 className="section-title mt-4">Supported exchanges and liquidity venues.</h2>
-          <p className="mx-auto mt-5 max-w-xl text-center text-gray-600">
-        MEV protection wherever you trade.
+    <section id="dexes" className="py-24">
+      <div className="page-wrap">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="badge mb-4 text-xs">Coverage</p>
+          <h2 className="section-title">Supported exchanges & liquidity venues</h2>
+          <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-slate-400">
+            MEV protection wherever you trade on Solana.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {DEXES.map((d) => (
             <div
               key={d.name}
-              className="glass-panel flex flex-col items-center rounded p-6 text-center"
+              className="glass-panel flex flex-col items-center rounded-xl p-6 text-center transition-all duration-200"
             >
-              <span className="flex h-16 w-16 items-center justify-center rounded border border-gray-300 bg-blue-50 text-4xl">
-                {d.logo}
-              </span>
-              <h3 className="mt-4 text-lg font-bold text-gray-900">{d.name}</h3>
-              <p className="mt-2 text-sm leading-6 text-gray-700">{d.desc}</p>
+              <div
+                className={`flex h-14 w-14 items-center justify-center rounded-xl border text-sm font-bold ${DEX_COLORS[d.color]}`}
+              >
+                {d.abbr}
+              </div>
+              <h3 className="mt-4 text-base font-semibold text-slate-100">{d.name}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{d.desc}</p>
             </div>
           ))}
         </div>
