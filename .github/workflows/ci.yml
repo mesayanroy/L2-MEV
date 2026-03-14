@@ -34,7 +34,7 @@ jobs:
         working-directory: backend
 
       - name: Run tests
-        run: pnpm test -- --coverage
+        run: pnpm test
         working-directory: backend
 
       - name: Upload coverage
