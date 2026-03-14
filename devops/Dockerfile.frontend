@@ -4,12 +4,17 @@
 FROM node:20 AS builder
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Activate pnpm via corepack (version pinned in root package.json)
+RUN corepack enable
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY frontend/package.json ./frontend/
-RUN npm ci --workspace=frontend
+COPY backend/package.json ./backend/
+COPY cli/package.json ./cli/
+RUN pnpm install --frozen-lockfile --filter l2mev-frontend
 
 COPY frontend ./frontend
-RUN npm -w frontend run build
+RUN pnpm --filter l2mev-frontend run build
 
 # ── Production stage ─────────────────────────────────────────
 FROM node:20-alpine AS runner
