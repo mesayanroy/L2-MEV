@@ -7,23 +7,30 @@ const DEXES = [
 
 export function SupportedDexes() {
   return (
-    <section id="dexes" className="mx-auto max-w-6xl px-4 py-20">
-      <h2 className="text-center text-3xl font-bold text-white">Supported exchanges</h2>
-      <p className="mx-auto mt-4 max-w-xl text-center text-slate-400">
+    <section id="dexes" className="page-wrap px-0 py-12 sm:py-16">
+      <div className="section-shell rounded px-6 py-10 sm:px-10">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">Coverage</p>
+          <h2 className="section-title mt-4">Supported exchanges and liquidity venues.</h2>
+          <p className="mx-auto mt-5 max-w-xl text-center text-gray-600">
         MEV protection wherever you trade.
-      </p>
+          </p>
+        </div>
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {DEXES.map((d) => (
-          <div
-            key={d.name}
-            className="flex flex-col items-center rounded-xl border border-dark-border bg-dark-card p-6 text-center transition hover:border-brand-500/50"
-          >
-            <span className="text-4xl">{d.logo}</span>
-            <h3 className="mt-3 font-bold text-white">{d.name}</h3>
-            <p className="mt-1 text-xs text-slate-400">{d.desc}</p>
-          </div>
-        ))}
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {DEXES.map((d) => (
+            <div
+              key={d.name}
+              className="glass-panel flex flex-col items-center rounded p-6 text-center"
+            >
+              <span className="flex h-16 w-16 items-center justify-center rounded border border-gray-300 bg-blue-50 text-4xl">
+                {d.logo}
+              </span>
+              <h3 className="mt-4 text-lg font-bold text-gray-900">{d.name}</h3>
+              <p className="mt-2 text-sm leading-6 text-gray-700">{d.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

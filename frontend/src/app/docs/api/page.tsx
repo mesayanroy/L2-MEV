@@ -101,48 +101,48 @@ const methodColor: Record<string, string> = {
 
 export default function ApiReferencePage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16">
-      <h1 className="text-4xl font-extrabold text-white">API Reference</h1>
-      <p className="mt-4 text-slate-400">
-        Base URL: <code className="rounded bg-dark-card px-2 py-0.5 text-sm text-green-400">https://api.l2mev.io</code>
+    <div className="page-wrap py-14">
+      <h1 className="text-4xl font-bold text-gray-900">API Reference</h1>
+      <p className="mt-4 text-gray-700">
+        Base URL: <code className="rounded border border-gray-300 bg-gray-100 px-2 py-0.5 text-sm text-blue-700">https://api.l2mev.io</code>
         <br />
-        Authentication: <code className="rounded bg-dark-card px-2 py-0.5 text-sm text-white">Authorization: Bearer &lt;token&gt;</code>
+        Authentication: <code className="rounded border border-gray-300 bg-gray-100 px-2 py-0.5 text-sm text-gray-900">Authorization: Bearer &lt;token&gt;</code>
       </p>
 
-      <div className="mt-6 rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-300">
+      <div className="mt-6 rounded border border-yellow-300 bg-yellow-50 px-4 py-3 text-sm text-yellow-900">
         <strong>Note:</strong> Protected endpoints require a JWT. Obtain one via{" "}
-        <code className="text-yellow-200">l2mev init</code> or the upcoming auth API.
+        <code className="text-yellow-800">l2mev init</code> or the upcoming auth API.
       </div>
 
       <div className="mt-12 space-y-12">
         {ENDPOINTS.map((e) => (
-          <section key={`${e.method}-${e.path}`} className="border-b border-dark-border pb-12">
+          <section key={`${e.method}-${e.path}`} className="rounded border border-gray-300 bg-gray-100 p-6">
             <div className="flex items-center gap-3">
               <span
                 className={`rounded-md px-2 py-0.5 font-mono text-xs font-bold ${methodColor[e.method] ?? ""}`}
               >
                 {e.method}
               </span>
-              <code className="font-mono text-lg text-white">{e.path}</code>
+              <code className="font-mono text-lg text-gray-900">{e.path}</code>
               {e.auth && (
-                <span className="rounded bg-brand-500/20 px-2 py-0.5 text-xs text-brand-500">
+                <span className="rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-700">
                   🔒 Auth required
                 </span>
               )}
             </div>
-            <p className="mt-2 text-slate-400">{e.desc}</p>
+            <p className="mt-2 text-gray-700">{e.desc}</p>
 
             {e.body && (
               <>
-                <p className="mt-4 text-sm font-semibold text-slate-300">Request body</p>
-                <pre className="mt-1 overflow-x-auto rounded-lg bg-dark-card px-4 py-3 text-xs text-slate-300">
+                <p className="mt-4 text-sm font-semibold text-gray-800">Request body</p>
+                <pre className="mt-1 overflow-x-auto rounded border border-gray-300 bg-white px-4 py-3 text-xs text-gray-800">
                   {e.body}
                 </pre>
               </>
             )}
 
-            <p className="mt-4 text-sm font-semibold text-slate-300">Response</p>
-            <pre className="mt-1 overflow-x-auto rounded-lg bg-dark-card px-4 py-3 text-xs text-slate-300">
+            <p className="mt-4 text-sm font-semibold text-gray-800">Response</p>
+            <pre className="mt-1 overflow-x-auto rounded border border-gray-300 bg-white px-4 py-3 text-xs text-gray-800">
               {e.response}
             </pre>
           </section>
@@ -150,13 +150,13 @@ export default function ApiReferencePage() {
       </div>
 
       <section className="mt-12">
-        <h2 className="text-2xl font-bold text-white">WebSocket — Real-time alerts</h2>
-        <p className="mt-3 text-slate-400">
-          Connect to <code className="rounded bg-dark-card px-2 py-0.5 text-sm text-green-400">wss://api.l2mev.io/ws/monitor</code>.
+        <h2 className="text-2xl font-bold text-gray-900">WebSocket — Real-time alerts</h2>
+        <p className="mt-3 text-gray-700">
+          Connect to <code className="rounded border border-gray-300 bg-gray-100 px-2 py-0.5 text-sm text-blue-700">wss://api.l2mev.io/ws/monitor</code>.
           You will receive a JSON message for every MEV alert detected, in the same format as{" "}
-          <code className="text-white">/api/monitor/alerts</code>.
+          <code className="text-gray-900">/api/monitor/alerts</code>.
         </p>
-        <pre className="mt-4 overflow-x-auto rounded-lg bg-dark-card px-4 py-3 text-xs text-slate-300">
+        <pre className="mt-4 overflow-x-auto rounded border border-gray-300 bg-white px-4 py-3 text-xs text-gray-800">
 {`const ws = new WebSocket("wss://api.l2mev.io/ws/monitor");
 ws.onmessage = (event) => {
   const alert = JSON.parse(event.data);

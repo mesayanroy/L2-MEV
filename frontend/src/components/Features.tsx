@@ -39,26 +39,31 @@ const FEATURES = [
 
 export function Features() {
   return (
-    <section id="features" className="mx-auto max-w-6xl px-4 py-20">
-      <h2 className="text-center text-3xl font-bold text-white">
-        Full-stack MEV protection
-      </h2>
-      <p className="mx-auto mt-4 max-w-xl text-center text-slate-400">
+    <section id="features" className="page-wrap px-0 py-12 sm:py-16">
+      <div className="section-shell rounded px-6 py-10 sm:px-10">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">Capabilities</p>
+          <h2 className="section-title mt-4">Full-stack defense for every trade path.</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-center text-gray-600">
         Every layer — from your terminal to the Solana runtime — is hardened against
         sandwich attacks, frontrunning, and backrunning.
-      </p>
+          </p>
+        </div>
 
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {FEATURES.map((f) => (
-          <div
-            key={f.title}
-            className="rounded-xl border border-dark-border bg-dark-card p-6 transition hover:border-brand-500/50"
-          >
-            <div className="mb-3 text-3xl">{f.icon}</div>
-            <h3 className="mb-2 font-semibold text-white">{f.title}</h3>
-            <p className="text-sm leading-relaxed text-slate-400">{f.desc}</p>
-          </div>
-        ))}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map((f) => (
+            <div
+              key={f.title}
+              className="glass-panel rounded p-6 transition hover:-translate-y-0.5"
+            >
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded border border-gray-300 bg-blue-50 text-2xl">
+                {f.icon}
+              </div>
+              <h3 className="mb-2 text-lg font-semibold text-gray-900">{f.title}</h3>
+              <p className="text-sm leading-7 text-gray-700">{f.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

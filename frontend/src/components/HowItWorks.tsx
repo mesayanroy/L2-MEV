@@ -30,28 +30,31 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-dark-card py-20">
-      <div className="mx-auto max-w-5xl px-4">
-        <h2 className="text-center text-3xl font-bold text-white">How it works</h2>
-        <p className="mx-auto mt-4 max-w-xl text-center text-slate-400">
+    <section id="how-it-works" className="page-wrap px-0 py-12 sm:py-16">
+      <div className="section-shell rounded px-6 py-10 sm:px-10">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">Workflow</p>
+          <h2 className="section-title mt-4">From zero setup to protected execution.</h2>
+          <p className="mx-auto mt-5 max-w-xl text-center text-gray-600">
           From install to protected trade in under two minutes.
-        </p>
+          </p>
+        </div>
 
-        <div className="mt-14 space-y-8">
+        <div className="mt-14 grid gap-6 lg:grid-cols-2">
           {STEPS.map((s, idx) => (
             <div
               key={s.step}
-              className="flex flex-col gap-4 rounded-xl border border-dark-border bg-dark-bg p-6 sm:flex-row sm:items-start"
+              className="glass-panel flex flex-col gap-4 rounded p-6 sm:flex-row sm:items-start"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded border border-blue-300 bg-blue-100 text-sm font-bold text-blue-700">
                 {s.step}
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-white">
+                <h3 className="text-lg font-semibold text-gray-900">
                   {idx + 1}. {s.title}
                 </h3>
-                <p className="mt-1 text-sm text-slate-400">{s.desc}</p>
-                <pre className="mt-3 overflow-x-auto rounded-lg bg-dark-card px-4 py-3 text-sm text-green-400">
+                <p className="mt-2 text-sm leading-7 text-gray-700">{s.desc}</p>
+                <pre className="mt-4 overflow-x-auto rounded border border-gray-300 bg-gray-100 px-4 py-4 text-sm text-blue-700">
                   <code>$ {s.code}</code>
                 </pre>
               </div>

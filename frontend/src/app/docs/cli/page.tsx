@@ -63,22 +63,22 @@ const COMMANDS = [
 
 export default function CliReferencePage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16">
-      <h1 className="text-4xl font-extrabold text-white">CLI Reference</h1>
-      <p className="mt-4 text-slate-400">
-        Install: <code className="rounded bg-dark-card px-2 py-0.5 text-sm text-green-400">npm install -g l2mev</code>
+    <div className="page-wrap py-14">
+      <h1 className="text-4xl font-bold text-gray-900">CLI Reference</h1>
+      <p className="mt-4 text-gray-700">
+        Install: <code className="rounded border border-gray-300 bg-gray-100 px-2 py-0.5 text-sm text-blue-700">npm install -g l2mev</code>
       </p>
 
       <div className="mt-12 space-y-14">
         {COMMANDS.map((c) => (
-          <section key={c.cmd}>
-            <h2 className="font-mono text-xl font-bold text-brand-500">{c.cmd}</h2>
-            <p className="mt-2 text-slate-300">{c.desc}</p>
+          <section key={c.cmd} className="rounded border border-gray-300 bg-gray-100 p-6">
+            <h2 className="font-mono text-xl font-bold text-blue-700">{c.cmd}</h2>
+            <p className="mt-2 text-gray-800">{c.desc}</p>
 
             {c.options.length > 0 && (
               <table className="mt-6 w-full text-sm border-collapse">
                 <thead>
-                  <tr className="border-b border-dark-border text-left text-slate-500">
+                  <tr className="border-b border-gray-300 text-left text-gray-500">
                     <th className="py-2 pr-4 font-medium">Flag</th>
                     <th className="py-2 pr-4 font-medium">Required</th>
                     <th className="py-2 font-medium">Description</th>
@@ -86,18 +86,18 @@ export default function CliReferencePage() {
                 </thead>
                 <tbody>
                   {c.options.map((o) => (
-                    <tr key={o.flag} className="border-b border-dark-border/40">
-                      <td className="py-2 pr-4 font-mono text-green-400">{o.flag}</td>
-                      <td className="py-2 pr-4 text-slate-400">{o.required ? "Yes" : "No"}</td>
-                      <td className="py-2 text-slate-300">{o.desc}</td>
+                    <tr key={o.flag} className="border-b border-gray-200">
+                      <td className="py-2 pr-4 font-mono text-blue-700">{o.flag}</td>
+                      <td className="py-2 pr-4 text-gray-600">{o.required ? "Yes" : "No"}</td>
+                      <td className="py-2 text-gray-800">{o.desc}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             )}
 
-            <div className="mt-4 overflow-x-auto rounded-lg bg-dark-card px-4 py-3 font-mono text-sm text-slate-300">
-              <span className="text-green-400">$ </span>
+            <div className="mt-4 overflow-x-auto rounded border border-gray-300 bg-white px-4 py-3 font-mono text-sm text-gray-800">
+              <span className="text-blue-700">$ </span>
               {c.example}
             </div>
           </section>
