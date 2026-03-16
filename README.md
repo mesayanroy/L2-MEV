@@ -17,7 +17,7 @@
 3. Your trade settles at a worse price  
 4. The bot immediately sells (**backrun**), pocketing the difference  
 
-**L2-MEV Shield** is an open infrastructure platform that protects DeFi traders from these attacks by:
+**L2-MEV Shield** is an open infrastructure platform that protects DeFi traders from these attacks by-
 
 | Protection Layer | How it works |
 |---|---|
